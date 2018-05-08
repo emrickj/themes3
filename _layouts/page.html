@@ -25,45 +25,30 @@
 t1 { white-space: pre-wrap;}
 body {margin: 0;}
 
-ul.topnav {
+header nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
 }
 
-ul.topnav li {
-    float: none;
-    margin: 0;}
-
-ul.topnav li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-ul.topnav li a:hover:not(.active) {background-color: #111;}
-
-ul.topnav li.active {background-color: #4CAF50;}
-
-ul.topnav li.right {float: none;}
+		header {padding-top:25px; border-bottom:1px solid #ccc; padding-bottom:20px;}
+		header .logo {font-size:3.52em; padding-left:20px;}
+		header nav ul li {float:left; margin-top:12px;}
+		header nav ul li a {display:block; padding:5px 15px; border-right:1px solid #eee; font-size:1.52em; font-family:Georgia, "Times New Roman", Times, serif; text-decoration:none;}
+		header nav ul li a:hover {background-color:#eee; border-right:1px solid #ccc; text-shadow:-1px -1px 0px #fff;}
+		header nav ul li.last a {border-right:none;}
+		
 
 
 
    </style>
 </head>
 <body class='page1' id='demo'>
-<div class="row">
-   <div class="three columns">
-      <div class="container">
-        <div style="padding-top: 20px;">
-          <b><h3 style="text-align: center;">{{ site.title | default: site.github.repository_name }}</h3></b>
-        </div> 
-      </div>  
-      <ul class="topnav">
+<header>
+    <b><h3 class="logo">{{ site.title | default: site.github.repository_name }}</h3></b>
+    <nav>
+      <ul>
 	{% for item in site.webpages %}
 		{% assign bs = "" %}
 		{% if page.url == item.url %}
@@ -72,16 +57,13 @@ ul.topnav li.right {float: none;}
 		<li{{ bs }}><a href='{{ item.url | relative_url }}'>{{ item.title }}</a></li>
 	{% endfor %}
       </ul>
-   </div>
-   <div class="nine columns">
-      <div style="padding-top: 20px;"></div>
-	{% if page.image_url %}
-	  <img class='u-max-full-width' style='display: block;margin: auto;' src='{{ page.image_url | relative url }}'>
-	{% endif %}
-	  <br>
-      <div class="container">
-{{ content }}   </div>
-   </div>
-</div>       
+    </nav>
+</header>
+<div class="container">
+{% if page.image_url %}
+  <img class='u-max-full-width' style='display: block;margin: auto;' src='{{ page.image_url | relative url }}'>
+{% endif %}
+  <br>
+{{ content }}</div>          
 </body>
 </html>
